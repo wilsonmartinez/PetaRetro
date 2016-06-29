@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wmartinez.devep.petaretro.AcercaDeActivity">
+
+    <include android:id="@+id/acercaDeToolbar"
+             layout="@layout/action_bar"
+        ></include>
+
+    <ImageView
+        android:id="@+id/imgFotoDev"
+        android:layout_width="320dp"
+        android:layout_height="400dp"
+        android:src="@drawable/foto_dev"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/tvNombreDev"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="@string/dev_nombre"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/tvProfesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="@string/dev_profesion"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/tvOrigen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="@string/dev_origen"
+        android:textAlignment="center"/>
+
+</LinearLayout>

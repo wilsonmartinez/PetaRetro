@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/fragmentPerfil"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.wmartinez.devep.petaretro.vista.PerfilFragment">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/civUsuario"
+        android:layout_width="@dimen/perfilCircleImageSize"
+        android:layout_height="@dimen/perfilCircleImageSize"
+        android:layout_margin="@dimen/perfilCircleMargins"
+        android:src="@drawable/perro"
+        android:layout_gravity="center"
+        app:civ_border="true"
+        app:civ_border_color="@color/colorAccent"
+        app:civ_border_width="@dimen/civ_width_border"
+        app:civ_shadow="true"
+        app:civ_shadow_color="@color/colorAccent"
+        app:civ_shadow_radius="10"
+        />
+
+    <TextView
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/s_nombre_account"
+        android:textSize="@dimen/tv_nombre_usuario"
+        android:layout_marginBottom="@dimen/perfilCircleMargins"
+        android:textAlignment="center"
+        />
+    <ImageView
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"/>
+
+    <FrameLayout
+        android:id="@+id/perfilFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvPerfilUsuario"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
+    </FrameLayout>
+</LinearLayout>

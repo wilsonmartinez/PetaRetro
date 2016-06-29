@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Peta Retrofit</string>
+    <string name="pnombre">nombre</string>
+    <string name="plikes">0</string>
+    <string name="action_like">Like</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_delete">Settings</string>
+    <string name="nombre">Puppy Pet</string>
+    <string name="puntos">5</string>
+    <string name="menu_contacto">Contacto</string>
+    <string name="menu_acerca_de">Acerca de</string>
+    <string name="s_nombre">Nombre</string>
+    <string name="s_email_from">From Email</string>
+    <string name="s_email_to">To Email</string>
+    <string name="s_email_from_password">From Email Password</string>
+    <string name="s_comentario">Comentario</string>
+    <string name="s_btn_enviar">Enviar Comentario</string>
+    <string name="dev_nombre">Wilson Martinez</string>
+    <string name="dev_profesion">Ingeniero Electronico</string>
+    <string name="dev_origen">Bogota, Colombia</string>
+    <string name="nombre_mascota">Nombre Mascota</string>
+    <string name="nombre_gato">Ergo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_configurar_cuenta">Configurar Cuenta</string>
+    <string name="s_configurar_cuenta">Escribe tu usuario</string>
+    <string name="nombre_cnfg_cuenta">Petagram</string>
+    <string name="s_btn_guardar_cuenta">Guardar Cuenta</string>
+    <string name="s_nombre_account">petamaster</string>
+</resources>
