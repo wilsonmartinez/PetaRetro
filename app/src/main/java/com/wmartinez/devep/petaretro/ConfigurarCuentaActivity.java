@@ -41,13 +41,13 @@ public class ConfigurarCuentaActivity extends AppCompatActivity {
         SharedPreferences.Editor userAccountEdit = userAccountPreferences.edit();
         userAccountEdit.putString("EditAccount", userAccount);
         if (userAccountEdit.commit()) {
-            Snackbar.make(view, "Cuenta guardada!!!", Snackbar.LENGTH_SHORT)
+            Snackbar.make(view, "Cuenta guardada!!!", Snackbar.LENGTH_LONG)
                     .setAction("EditAction", null).show();
             Intent intentEdit = new Intent(ConfigurarCuentaActivity.this, MainActivity.class);
             startActivity(intentEdit);
             finish();
         } else {
-            Snackbar.make(view, "Fallo al guardar, no es usuario SandBox", Snackbar.LENGTH_SHORT)
+            Snackbar.make(view, "Fallo al guardar, no es usuario SandBox", Snackbar.LENGTH_LONG)
                     .setAction("EditAction", null).show();
         }
 
