@@ -1,6 +1,8 @@
 package com.wmartinez.devep.petaretro;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -30,14 +32,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.mainToolbar);
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+
         tabLayout = (TabLayout) findViewById(R.id.mainTabLayout);
         viewPager = (ViewPager) findViewById(R.id.mainViewPager);
         Log.e("MainActivity", "onCreate");
-        setUpViewPager();
 
-        if (toolbar != null){
-            setSupportActionBar(toolbar);
+        if (validateAccount()) {
+            setUpViewPager();
         }
+
+    }
+
+    private boolean validateAccount() {
+        SharedPreferences userAccountPreferences = getSharedPreferences("account", Context.MODE_PRIVATE);
+        String userAccount = userAccountPreferences.getString("EditAccount", null);
+        if (userAccount == null) {
+            Intent intentConfigAccount = new Intent(MainActivity.this, ConfigurarCuentaActivity.class);
+            startActivity(intentConfigAccount);
+            Toast.makeText(MainActivity.this, "Por favor configure una cuanta", Toast.LENGTH_LONG).show();
+            finish();
+            return false;
+        } else
+            return true;
+    }
+
+    private void setUpViewPager() {
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), agregarFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_contacts);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_name);
     }
 
     private ArrayList<Fragment> agregarFragments(){
@@ -48,13 +76,6 @@ public class MainActivity extends AppCompatActivity {
         fragments.add(new PerfilFragment());
 
         return fragments;
-    }
-    private void setUpViewPager() {
-        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), agregarFragments()));
-        tabLayout.setupWithViewPager(viewPager);
-
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_contacts);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_name);
     }
 
     @Override

@@ -9,6 +9,7 @@ public class ConstantesRestApi {
     public static final String ROOT_URL = "https://api.instagram.com" + VERSION;
     public static final String ACCESS_TOKEN = "3435346040.e050623.cd4afd9336f44c4ca540a3c96a4ba0c5";
     public static final String KEY_ACCESS_TOKEN = "?access_token=";
+    public static final String KEY_SCOPE = "&scope=public_content";
     public static final String KEY_GET_RECENT_MEDIA_USER = "users/self/media/recent/";
     public static final String URL_GET_RECENT_MEDIA_USER = KEY_GET_RECENT_MEDIA_USER + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
     //https://api.instagram.com/v1/users/self/media/recent/?access_token=ACCESS-TOKEN
@@ -22,5 +23,10 @@ public class ConstantesRestApi {
     public static final String KEY_GET_FOLLOWED_MEDIA_BY_USER = "/media/recent/";
     public static final String KEY_GET_FOLLOWER_BY_USER = "users/";
     public static final String URL_GET_FOLLOWER_MEDIA_BY_USER = KEY_GET_FOLLOWER_BY_USER + KEY_USER_ID + KEY_GET_FOLLOWED_MEDIA_BY_USER + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
+
+    //https://api.instagram.com/v1/users/search?access_token=ACCESS-TOKE&scope=public_content
+    //https://api.instagram.com/v1/users/search?q=jack&access_token=ACCESS-TOKEN
+    public static final String KEY_GET_SEARCH = "users/search";
+    public static final String URL_SEARCH_USERS = KEY_ACCESS_TOKEN + ACCESS_TOKEN + KEY_SCOPE;
 
 }

@@ -1,19 +1,21 @@
 package com.wmartinez.devep.petaretro;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.wmartinez.devep.petaretro.vista.PerfilFragment;
-
 public class ConfigurarCuentaActivity extends AppCompatActivity {
 
     private EditText etNameCuenta;
+    private Button saveAccount;
+    private View view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,41 +26,30 @@ public class ConfigurarCuentaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         etNameCuenta = (EditText)findViewById(R.id.et_name_cuenta);
-
-        final Button saveAccount = (Button)findViewById(R.id.btn_guardar_cuenta);
+        saveAccount = (Button) findViewById(R.id.btn_guardar_cuenta);
         saveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(etNameCuenta != null){
-                   Fragment perfilFragmentPresenter = new PerfilFragment();
-                    Bundle args = new Bundle();
-                    args.putString("account", etNameCuenta.getText().toString());
-                    perfilFragmentPresenter.setArguments(args);
-
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragmentPerfil, perfilFragmentPresenter);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-                    /*Intent iPerfil = new Intent(ConfigurarCuentaActivity.this, PerfilFragmentViewPresenter.class);
-                    iPerfil.putExtra("account", etNameCuenta.getText());
-                    startActivity(iPerfil);*/
-                }
-                else {
-                    Fragment perfilFragmentPresenter = new PerfilFragment();
-                    Bundle args = new Bundle();
-                    args.putString("account", "petamaster");
-                    perfilFragmentPresenter.setArguments(args);
-
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragmentPerfil, perfilFragmentPresenter);
-                    transaction.addToBackStack(null);
-
-                    /*transaction.commit();
-                    Intent iPerfil = new Intent(ConfigurarCuentaActivity.this, PerfilFragmentViewPresenter.class);
-                    iPerfil.putExtra("account", "petamaster");
-                    startActivity(iPerfil);*/
-                }
+                saveAccount(v);
             }
         });
+    }
+
+    private void saveAccount(View view) {
+        String userAccount = etNameCuenta.getText().toString().trim();
+        SharedPreferences userAccountPreferences = getSharedPreferences("account", Context.MODE_PRIVATE);
+        SharedPreferences.Editor userAccountEdit = userAccountPreferences.edit();
+        userAccountEdit.putString("EditAccount", userAccount);
+        if (userAccountEdit.commit()) {
+            Snackbar.make(view, "Cuenta guardada!!!", Snackbar.LENGTH_SHORT)
+                    .setAction("EditAction", null).show();
+            Intent intentEdit = new Intent(ConfigurarCuentaActivity.this, MainActivity.class);
+            startActivity(intentEdit);
+            finish();
+        } else {
+            Snackbar.make(view, "Fallo al guardar, no es usuario SandBox", Snackbar.LENGTH_SHORT)
+                    .setAction("EditAction", null).show();
+        }
+
     }
 }

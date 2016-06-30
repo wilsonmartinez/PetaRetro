@@ -12,4 +12,6 @@ public interface IPerfilFragmentView {
     void generarGridLayout();
     PerfilMascotaAdaptador crearAdaptador(ArrayList<Mascota> mascotas);
     void inicializarAdaptadorRV(PerfilMascotaAdaptador adaptador);
+
+    void userPerfilData(Mascota userPerfil);
 }

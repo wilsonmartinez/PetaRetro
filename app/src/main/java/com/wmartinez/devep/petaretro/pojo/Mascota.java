@@ -16,6 +16,13 @@ public class Mascota {
         this.likes = likes;
     }
 
+    public Mascota(String id, String userName, String urlFoto, int likes) {
+        this.id = id;
+        this.userName = userName;
+        this.urlFoto = urlFoto;
+        this.likes = likes;
+    }
+
     public Mascota() {
     }
 

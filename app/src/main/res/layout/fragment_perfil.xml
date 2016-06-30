@@ -1,7 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout android:id="@+id/fragmentPerfil"
+              xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:id="@+id/fragmentPerfil"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
@@ -11,9 +11,9 @@
         android:id="@+id/civUsuario"
         android:layout_width="@dimen/perfilCircleImageSize"
         android:layout_height="@dimen/perfilCircleImageSize"
-        android:layout_margin="@dimen/perfilCircleMargins"
-        android:src="@drawable/perro"
         android:layout_gravity="center"
+        android:layout_margin="@dimen/perfilCircleMargins"
+        android:src="@drawable/pets"
         app:civ_border="true"
         app:civ_border_color="@color/colorAccent"
         app:civ_border_width="@dimen/civ_width_border"
@@ -26,15 +26,15 @@
         android:id="@+id/tvNombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/s_nombre_account"
-        android:textSize="@dimen/tv_nombre_usuario"
         android:layout_marginBottom="@dimen/perfilCircleMargins"
+        android:text="@string/pnombre"
         android:textAlignment="center"
+        android:textSize="@dimen/tv_nombre_usuario"
         />
     <ImageView
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="4dp"/>
+        android:layout_height="4dp"
+        android:background="@color/colorPrimary"/>
 
     <FrameLayout
         android:id="@+id/perfilFragment"
@@ -42,9 +42,9 @@
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvPerfilUsuario"
-            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
             android:scrollbars="vertical"/>
     </FrameLayout>
 </LinearLayout>
