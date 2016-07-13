@@ -29,4 +29,5 @@
     <string name="nombre_cnfg_cuenta">Petagram</string>
     <string name="s_btn_guardar_cuenta">Guardar Cuenta</string>
     <string name="s_nombre_account">petamaster</string>
+    <string name="menu_recibir_notificacion">Recibir Notificaciones</string>
 </resources>

@@ -15,17 +15,27 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.wmartinez.devep.petaretro.adapter.PageAdapter;
+import com.wmartinez.devep.petaretro.restApi.EndpointsApi;
+import com.wmartinez.devep.petaretro.restApi.adapter.RestApiAdapter;
+import com.wmartinez.devep.petaretro.restApi.model.RegistroResponse;
 import com.wmartinez.devep.petaretro.vista.PerfilFragment;
 import com.wmartinez.devep.petaretro.vista.RecyclerViewFragment;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
 
+    private static final String USUARIO_INSTAGRAM = "petamaster";
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +59,12 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean validateAccount() {
         SharedPreferences userAccountPreferences = getSharedPreferences("account", Context.MODE_PRIVATE);
+        //String idDevice = userAccountPreferences.getString("idDevice", null);
         String userAccount = userAccountPreferences.getString("EditAccount", null);
         if (userAccount == null) {
             Intent intentConfigAccount = new Intent(MainActivity.this, ConfigurarCuentaActivity.class);
             startActivity(intentConfigAccount);
-            Toast.makeText(MainActivity.this, "Por favor configure una cuanta", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Por favor configure una cuenta", Toast.LENGTH_LONG).show();
             finish();
             return false;
         } else
@@ -110,8 +121,70 @@ public class MainActivity extends AppCompatActivity {
                 Intent iCfgCuenta = new Intent(this, ConfigurarCuentaActivity.class);
                 startActivity(iCfgCuenta);
                 return true;
+            case R.id.action_recibir_notificacion:
+                registroUsuario();
+                //likeUser();
+                return true;
             default:
                 return true;
         }
     }
+
+    private void registroUsuario() {
+        SharedPreferences userAccountPreferences = getSharedPreferences("account", Context.MODE_PRIVATE);
+        String idDevice = userAccountPreferences.getString("idDevice", null);
+        String idUserInstagram = userAccountPreferences.getString("EditAccount", null);
+        if (idDevice == null) {
+            idDevice = FirebaseInstanceId.getInstance().getToken();
+            enviarRegistro(idDevice, idUserInstagram);
+        } else {
+            Toast.makeText(MainActivity.this, "Dispositivo registrado", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void enviarRegistro(String idDevice, String idUserInstagram) {
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndpointsApi endpointsApi = restApiAdapter.establecerConexionRestApiHeroku();
+        Call<RegistroResponse> registroResponseCall = endpointsApi.registrarUsuario(idDevice, idUserInstagram);
+        registroResponseCall.enqueue(new Callback<RegistroResponse>() {
+            @Override
+            public void onResponse(Call<RegistroResponse> call, Response<RegistroResponse> response) {
+                RegistroResponse registroResponse = response.body();
+                SharedPreferences account = getSharedPreferences("account", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = account.edit();
+                editor.putString("idDevice", registroResponse.getId_dispositivo());
+                editor.commit();
+                Toast.makeText(MainActivity.this, "Registro dispositivo exitoso", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<RegistroResponse> call, Throwable t) {
+                SharedPreferences account = getSharedPreferences("MiCuenta", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = account.edit();
+                editor.putString("idDevice", null);
+                editor.commit();
+                Toast.makeText(MainActivity.this, "Error en registro dispositivo", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+/*
+    public void likeUser(){
+        RegistroResponse registroResponse = new RegistroResponse("-KMQZft6xupgzp3lTQmp", "12345", USUARIO_INSTAGRAM);
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndpointsApi endpointsApi = restApiAdapter.establecerConexionRestApiHeroku();
+        Call<RegistroResponse> registroResponseCall = endpointsApi.likeUser(registroResponse.getId_dispositivo(), USUARIO_INSTAGRAM);
+        registroResponseCall.enqueue(new Callback<RegistroResponse>() {
+            @Override
+            public void onResponse(Call<RegistroResponse> call, Response<RegistroResponse> response) {
+                RegistroResponse registroResponse1 = response.body();
+                Log.d("ID_FIREBASE", registroResponse1.getId());
+                Log.d("TOKEN_FIREBASE", registroResponse1.getId_dispositivo());
+                Log.d("USER_FIREBASE", registroResponse1.getId_usuario_instagram());
+            }
+
+            @Override
+            public void onFailure(Call<RegistroResponse> call, Throwable t) {
+            }
+        });
+    }*/
 }

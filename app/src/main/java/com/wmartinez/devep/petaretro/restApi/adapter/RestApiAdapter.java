@@ -44,4 +44,13 @@ public class RestApiAdapter {
         gsonBuilder.registerTypeAdapter(FollowerMediaResponse.class, new FollowersMediaDeserializador());
         return  gsonBuilder.create();
     }
+
+    public EndpointsApi establecerConexionRestApiHeroku() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ConstantesRestApi.ROOT_URL_HEROKU)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(EndpointsApi.class);
+    }
 }

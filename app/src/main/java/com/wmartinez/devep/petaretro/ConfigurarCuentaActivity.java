@@ -50,6 +50,5 @@ public class ConfigurarCuentaActivity extends AppCompatActivity {
             Snackbar.make(view, "Fallo al guardar, no es usuario SandBox", Snackbar.LENGTH_LONG)
                     .setAction("EditAction", null).show();
         }
-
     }
 }
