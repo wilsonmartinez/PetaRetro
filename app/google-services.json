@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "391194018241",
+    "firebase_url": "https://petaretro.firebaseio.com",
+    "project_id": "petaretro",
+    "storage_bucket": "petaretro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391194018241:android:b3fe44c33ae154c8",
+        "android_client_info": {
+          "package_name": "com.wmartinez.devep.petaretro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391194018241-v8n4r0bp6l8sl7u9trdokqnjml9m9jgm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wmartinez.devep.petaretro",
+            "certificate_hash": "060A92A33E05B37A3117555AA57E7C50EA290E05"
+          }
+        },
+        {
+          "client_id": "391194018241-8g21t24c1enhs8ka3ab8mhqhtm8j1plh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaKX1fQMkfni4yDMP9aUrkVPbzXGpoK1g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391194018241-8g21t24c1enhs8ka3ab8mhqhtm8j1plh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
