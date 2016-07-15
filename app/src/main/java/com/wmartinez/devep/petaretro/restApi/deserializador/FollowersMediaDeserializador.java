@@ -34,6 +34,7 @@ public class FollowersMediaDeserializador implements JsonDeserializer {
             JsonObject followersResponseDataObject = followersResponseData.get(i).getAsJsonObject();
 
             JsonObject userJson     = followersResponseDataObject.getAsJsonObject(JsonKeys.USER);
+            String userNameJson = userJson.get(JsonKeys.USER_NAME).getAsString();
             String id               = userJson.get(JsonKeys.USER_ID).getAsString();
             String nombreCompleto   = userJson.get(JsonKeys.USER_FULLNAME).getAsString();
 
@@ -44,11 +45,15 @@ public class FollowersMediaDeserializador implements JsonDeserializer {
             JsonObject likeJson = followersResponseDataObject.getAsJsonObject(JsonKeys.MEDIA_LIKES);
             int likes           = likeJson.get(JsonKeys.MEDIA_LIKES_COUNT).getAsInt();
 
+            String idImagen = followersResponseDataObject.get(JsonKeys.MEDIA_ID).getAsString();
+
             Mascota followerActual  = new Mascota();
             followerActual.setId(id);
             followerActual.setNombreCompleto(nombreCompleto);
             followerActual.setUrlFoto(urlFoto);
+            followerActual.setUserName(userNameJson);
             followerActual.setLikes(likes);
+            followerActual.setIdImagen(idImagen);
 
             followers.add(followerActual);
         }

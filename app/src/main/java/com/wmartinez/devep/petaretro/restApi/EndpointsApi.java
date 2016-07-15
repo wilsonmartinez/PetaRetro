@@ -2,6 +2,8 @@ package com.wmartinez.devep.petaretro.restApi;
 
 import com.wmartinez.devep.petaretro.restApi.model.FollowerMediaResponse;
 import com.wmartinez.devep.petaretro.restApi.model.FollowersResponse;
+import com.wmartinez.devep.petaretro.restApi.model.LikeNotificationResponse;
+import com.wmartinez.devep.petaretro.restApi.model.LikesResponse;
 import com.wmartinez.devep.petaretro.restApi.model.MascotaResponse;
 import com.wmartinez.devep.petaretro.restApi.model.RegistroResponse;
 import com.wmartinez.devep.petaretro.restApi.model.UserResponse;
@@ -36,9 +38,29 @@ public interface EndpointsApi {
 
     @FormUrlEncoded
     @POST(ConstantesRestApi.KEY_POST_USER_REGISTER)
-    Call<RegistroResponse> registrarUsuario(@Field("id_dispositivo") String deviceId, @Field("id_user_instagram") String userId);
+    Call<RegistroResponse> registrarUsuario(@Field("id_dispositivo") String deviceId,
+                                            @Field("id_user_instagram") String userId);
+
+    @FormUrlEncoded
+    @POST(ConstantesRestApi.KEY_POST_USER_SET_LIKE)
+    Call<LikeNotificationResponse> regsitrarLikes(@Field("id_foto_instagram") String id_foto_instagram,
+                                                  @Field("id_usuario_instagram") String id_usuario_instagram,
+                                                  @Field("id_dispositivo") String id_dispositivo,
+                                                  @Field("likes") String likes);
+
+    @FormUrlEncoded
+    @POST(ConstantesRestApi.KEY_SET_LIKE)
+    Call<LikesResponse> setLikes(@Path("media-id") String id_foto_instagram,
+                                 @Field("access_token") String access_token);
 
     @GET(ConstantesRestApi.KEY_LIKE_USER)
     Call<RegistroResponse> likeUser(@Path("id") String id, @Path("user") String user);
+
+    @GET(ConstantesRestApi.KEY_GET_LIKE_PET)
+    Call<LikeNotificationResponse> sendLikeNotification(
+            @Path("id_foto_instagram") String id_foto_instagram,
+            @Path("id_usuario_instagram") String id_usuario_instagram,
+            @Path("id_dispositivo") String id_dispositivo
+    );
 
 }

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public interface IRecyclerViewFragmentView {
 
     void generarGridLayout();
+
+    void generarLinearLayout();
     MascotaAdaptador crearAdaptador(ArrayList<Mascota> mascotas);
     void inicializarAdaptadorRV(MascotaAdaptador adaptador);
 

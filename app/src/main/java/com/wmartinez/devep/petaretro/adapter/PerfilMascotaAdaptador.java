@@ -19,9 +19,9 @@ import java.util.ArrayList;
  */
 public class PerfilMascotaAdaptador extends RecyclerView.Adapter<PerfilMascotaAdaptador.PerfilMascotaViewHolder>{
 
+    public int likes;
     ArrayList<Mascota> mascotas;
     Activity activity;
-    public int likes;
 
     public PerfilMascotaAdaptador(ArrayList<Mascota> mascotas, Activity activity) {
         this.mascotas = mascotas;
@@ -30,7 +30,7 @@ public class PerfilMascotaAdaptador extends RecyclerView.Adapter<PerfilMascotaAd
 
     @Override
     public PerfilMascotaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_grid_mascota, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_perfil_mascota, parent, false);
         return new PerfilMascotaViewHolder(view);
     }
 
@@ -55,8 +55,8 @@ public class PerfilMascotaAdaptador extends RecyclerView.Adapter<PerfilMascotaAd
         private TextView tvLikes;
         public PerfilMascotaViewHolder(View itemView) {
             super(itemView);
-            imgFoto = (ImageView) itemView.findViewById(R.id.imgFoto);
-            tvLikes = (TextView) itemView.findViewById(R.id.tvLikes);
+            imgFoto = (ImageView) itemView.findViewById(R.id.imgFotoCVPerfil);
+            tvLikes = (TextView) itemView.findViewById(R.id.tvLikesCVPerfil);
         }
     }
 }

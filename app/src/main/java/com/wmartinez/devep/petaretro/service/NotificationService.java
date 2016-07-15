@@ -34,9 +34,9 @@ public class NotificationService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.dog_bone_filled_50)
                 .setContentTitle("Notificacion PetaRetro")
                 .setContentText(remoteMessage.getNotification().getBody())
-                .setAutoCancel(true)
                 .setSound(sonido)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, builder.build());
     }

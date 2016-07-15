@@ -25,16 +25,16 @@ import retrofit2.Response;
  */
 public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPresenter {
 
+    private static ArrayList<Mascota> mascotas, followers, followersMedia, followersMediaVista;
     private IRecyclerViewFragmentView iRecyclerViewFragmentView;
     private Context context;
     private ConstructorMascotas constructorMascotas;
-    private static ArrayList<Mascota> mascotas, followers, followersMedia, followersMediaVista;
 
     public RecyclerViewFragmentPresenter(IRecyclerViewFragmentView iRecyclerViewFragmentView, Context context) {
         this.iRecyclerViewFragmentView = iRecyclerViewFragmentView;
         this.context = context;
 
-        followersMediaVista = new ArrayList<>();
+        followersMediaVista = new ArrayList<Mascota>();
         //obtenerMascotasBaseDatos();
         //obtenerMediosRecientes();
         obtenerFollowers();
@@ -118,18 +118,21 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
     @Override
     public void mostrarMascotasRV() {
         iRecyclerViewFragmentView.inicializarAdaptadorRV(iRecyclerViewFragmentView.crearAdaptador(mascotas));
-        iRecyclerViewFragmentView.generarGridLayout();
+        //iRecyclerViewFragmentView.generarGridLayout();
+        iRecyclerViewFragmentView.generarLinearLayout();
     }
 
     @Override
     public void mostrarFollowersRV() {
         iRecyclerViewFragmentView.inicializarAdaptadorRV(iRecyclerViewFragmentView.crearAdaptador(followers));
-        iRecyclerViewFragmentView.generarGridLayout();
+        //iRecyclerViewFragmentView.generarGridLayout();
+        iRecyclerViewFragmentView.generarLinearLayout();
     }
 
     @Override
     public void mostrarFollowerMediaRV() {
         iRecyclerViewFragmentView.inicializarAdaptadorRV(iRecyclerViewFragmentView.crearAdaptador(followersMediaVista));
-        iRecyclerViewFragmentView.generarGridLayout();
+        //iRecyclerViewFragmentView.generarGridLayout();
+        iRecyclerViewFragmentView.generarLinearLayout();
     }
 }
