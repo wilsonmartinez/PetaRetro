@@ -18,18 +18,17 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".service.NotificationService">
+        <service android:name=".service.NotificationService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
-        <service
-            android:name=".service.NotificationIdTokenService">
+        <service android:name=".service.NotificationIdTokenService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
+
         <activity
             android:name=".DetalleMascotaActivity"
             android:parentActivityName=".MainActivity"
@@ -62,7 +61,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
         </activity>
-        <activity android:name=".ConfigurarCuentaActivity"
+        <activity
+            android:name=".ConfigurarCuentaActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity
+            android:name=".PerfilActivity"
                   android:parentActivityName=".MainActivity"
                   android:theme="@style/AppTheme">
             <meta-data

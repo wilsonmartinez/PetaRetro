@@ -34,10 +34,16 @@ import retrofit2.Response;
  */
 public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.MascotaViewHolder> {
 
+    //private static final String USER_RECEPTOR = "petamaster";
+    private static final String USER_RECEPTOR = "petmaster2016";
+    private static final String ID_PETAMASTER = "-KOzTmeHHX0JYlO4vK4q";
+    private static final String ID_PETMASTER2016 = "-KOzTodh25zTDJcV5_n_";
+    private static final String ID_RECEPTOR = ID_PETAMASTER;
     ArrayList<Mascota> mascotas;
     Activity activity;
     private String id_usuario_instagram;
     private String id_dispositivo;
+    //private static final String ID_RECEPTOR = ID_PETMASTER2016;
 
     public MascotaAdaptador(ArrayList<Mascota> mascotas, Activity activity){
         this.mascotas = mascotas;
@@ -87,7 +93,8 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
                                 Toast.makeText(activity, "Por favor activa la recepcion de notificaciones", Toast.LENGTH_LONG).show();
                             } else {
                                 loadlikesDB(mascota.getIdImagen(), mascota.getUserName(), mascota.getLikes());
-                                sendNotificationLike(mascota.getIdImagen(), mascota.getUserName());
+                                //sendNotificationLike(mascota.getIdImagen(), mascota.getUserName());
+                                sendNotificationUser();
                             }
                             mascotaViewHolder.tvLikes.setText(String.valueOf(mascota.getLikes()));
                             Toast.makeText(activity, "Diste Like a " + String.valueOf(mascota.getUserName()), Toast.LENGTH_SHORT).show();
@@ -125,6 +132,29 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         });
     }
 
+    private void sendNotificationUser() {
+        //LikeNotificationResponse likeNotificationResponse = new LikeNotificationResponse()
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndpointsApi endpointsApi = restApiAdapter.establecerConexionRestApiHeroku();
+        Call<LikeNotificationResponse> likeNotificationResponseCall = endpointsApi.sendNotificationUser(ID_RECEPTOR, USER_RECEPTOR);
+        likeNotificationResponseCall.enqueue(new Callback<LikeNotificationResponse>() {
+            @Override
+            public void onResponse(Call<LikeNotificationResponse> call, Response<LikeNotificationResponse> response) {
+                Toast.makeText(activity, "Notifiacacion Enviada", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<LikeNotificationResponse> call, Throwable t) {
+                Toast.makeText(activity, "Fallo en envio de notifiacacion", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return mascotas.size();
+    }
+
     private void sendNotificationLike(String id_foto_instagram, String id_usuario_instagram) {
         Log.d("Mascota Adapter", "sendNotificationLike...");
         LikeNotificationResponse likesResponse = new LikeNotificationResponse(id_foto_instagram, id_usuario_instagram, id_dispositivo);
@@ -145,11 +175,6 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             }
         });
 
-    }
-
-    @Override
-    public int getItemCount() {
-        return mascotas.size();
     }
 
     public class MascotaViewHolder extends RecyclerView.ViewHolder {

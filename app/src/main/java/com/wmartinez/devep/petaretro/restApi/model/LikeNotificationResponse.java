@@ -12,6 +12,11 @@ public class LikeNotificationResponse {
     public LikeNotificationResponse() {
     }
 
+    public LikeNotificationResponse(String id_dispositivo, String id_usuario_instagram) {
+        this.id_dispositivo = id_dispositivo;
+        this.id_usuario_instagram = id_usuario_instagram;
+    }
+
     public LikeNotificationResponse(String id_foto_instagram, String id_usuario_instagram, String id_dispositivo) {
         this.id_foto_instagram = id_foto_instagram;
         this.id_usuario_instagram = id_usuario_instagram;

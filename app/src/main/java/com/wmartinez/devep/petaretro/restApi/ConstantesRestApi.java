@@ -31,6 +31,12 @@ public final class ConstantesRestApi {
     public static final String KEY_GET_SEARCH = "users/search";
     public static final String URL_SEARCH_USERS = KEY_ACCESS_TOKEN + ACCESS_TOKEN + KEY_SCOPE;
 
+    //https://api.instagram.com/v1/users/3435346040/relationship?access_token=3595518142.9cabae8.02c800215c90453b8c1f9dcab1e3ec53
+    //https://api.instagram.com/v1/users/{user-id}/relationship?access_token=ACCESS-TOKEN
+    public static final String USER_RELATIONSHIP = "users/";
+    public static final String KEY_RELATIONSHIP = "/relationship";
+    public static final String URL_RELATIONSHIP = USER_RELATIONSHIP + KEY_USER_ID + KEY_RELATIONSHIP + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
+
     /**
      * Constantes para Heroku
      */
@@ -41,5 +47,9 @@ public final class ConstantesRestApi {
     public static final String KEY_POST_USER_SET_LIKE = "android/pet-like/";
     public static final String KEY_LIKE_USER = "android/like-user/{id}/{user}/";
     public static final String KEY_GET_LIKE_PET = "pet-like/{id_foto_instagram}/{id_usuario_instagram}/{id_dispositivo}";
+    /**
+     * Notificacion
+     **/
+    public static final String KEY_NOTIFICATION_USER = "/android/pet-like-notification/{id}/{id_usuario_instagram}";
 
 }

@@ -53,6 +53,11 @@ public interface EndpointsApi {
     Call<LikesResponse> setLikes(@Path("media-id") String id_foto_instagram,
                                  @Field("access_token") String access_token);
 
+    @FormUrlEncoded
+    @POST(ConstantesRestApi.URL_RELATIONSHIP)
+    Call<UserResponse> setFollowUnfollow(@Path("user-id") String id_usuario,
+                                         @Field("action") String relationship);
+
     @GET(ConstantesRestApi.KEY_LIKE_USER)
     Call<RegistroResponse> likeUser(@Path("id") String id, @Path("user") String user);
 
@@ -61,6 +66,12 @@ public interface EndpointsApi {
             @Path("id_foto_instagram") String id_foto_instagram,
             @Path("id_usuario_instagram") String id_usuario_instagram,
             @Path("id_dispositivo") String id_dispositivo
+    );
+
+    @GET(ConstantesRestApi.KEY_NOTIFICATION_USER)
+    Call<LikeNotificationResponse> sendNotificationUser(
+            @Path("id") String id,
+            @Path("id_usuario_instagram") String id_usuario_instagram
     );
 
 }
