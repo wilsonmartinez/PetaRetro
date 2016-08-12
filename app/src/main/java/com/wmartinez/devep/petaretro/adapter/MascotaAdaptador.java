@@ -39,10 +39,13 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
     private static final String ID_PETAMASTER = "-KOzTmeHHX0JYlO4vK4q";
     private static final String ID_PETMASTER2016 = "-KOzTodh25zTDJcV5_n_";
     private static final String ID_RECEPTOR = ID_PETAMASTER;
+    //private static final String ID_RECEPTOR = ID_PETMASTER2016;
+
     ArrayList<Mascota> mascotas;
     Activity activity;
     private String id_usuario_instagram;
     private String id_dispositivo;
+
 
     public MascotaAdaptador(ArrayList<Mascota> mascotas, Activity activity){
         this.mascotas = mascotas;
